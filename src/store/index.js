@@ -10,15 +10,22 @@ export default createStore({
     selectedParent: 3
   },
   getters: {    
-    nextId: state => {
-      const length = state.parents.length;
-      const result = state.parents[length-1].id + 1;
-      return result;
+    nextId: state => {      
+      let maximum = -1;
+      state.parents.forEach(parent => {
+        if(parent.id > maximum){
+          maximum = parent.id;
+        }
+      });
+      return maximum + 1;      
     }  
   },
   mutations: {
     selectParent(state, id){
       state.selectedParent = id;
+    },
+    addParent(state, newParent){
+      state.parents.push(newParent);
     }
   },
   actions: {
