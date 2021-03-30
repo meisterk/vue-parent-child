@@ -1,6 +1,7 @@
 <template>  
   <h1>CreateParent</h1>  
   <input type="text" v-model="parentName">
+  <button @click="buttonCancel">Cancel</button>
   <button @click="buttonSave">Save</button>
 </template>
 
@@ -12,6 +13,9 @@ export default {
     } 
   },
   methods:{
+    buttonCancel(){      
+      this.$router.push('/');
+    },
     buttonSave(){
       const newParent = {
         id: this.$store.getters.nextId,
