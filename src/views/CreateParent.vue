@@ -1,8 +1,10 @@
 <template>  
   <h1>CreateParent</h1>  
   <input type="text" v-model="parentName">
-  <button @click="buttonCancel">Cancel</button>
-  <button @click="buttonSave">Save</button>
+  <div>
+    <button @click="buttonCancel">Cancel</button>
+    <button @click="buttonSave">Save</button>
+  </div>
 </template>
 
 <script>
