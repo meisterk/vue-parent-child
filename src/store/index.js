@@ -9,8 +9,12 @@ export default createStore({
     ],
     selectedParent: 3
   },
-  getters: {
-    
+  getters: {    
+    nextId: state => {
+      const length = state.parents.length;
+      const result = state.parents[length-1].id + 1;
+      return result;
+    }  
   },
   mutations: {
     selectParent(state, id){

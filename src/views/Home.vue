@@ -8,7 +8,8 @@
       {{ parent.name }}
     </option>
   </select>
-  <span>Selected: {{ selectedParent }}</span>
+  <p>Selected: {{ selectedParent }}</p>
+  <p>Next Id: {{ nextId }}</p>
 </template>
 
 <script>
@@ -22,6 +23,9 @@ export default {
     parents(){
       return this.$store.state.parents;
     },
+    nextId(){
+      return this.$store.getters.nextId;
+    },
     selectedParent: {
       get () {
         return this.$store.state.selectedParent;
@@ -29,7 +33,7 @@ export default {
       set (value) {
         this.$store.commit('selectParent', value);
       }
-    }
+    }    
   }
 }
 </script>
