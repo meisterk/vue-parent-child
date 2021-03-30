@@ -7,7 +7,7 @@
       {{ parent.name }}
     </option>
   </select>
-  <p>Selected: {{ selectedParent }}, Next Id: {{ nextId }}</p>
+  <p>Selected: {{ selectedParent }}, Next Id: {{ nextId }}, Children: {{ children}}</p>
 
   <h2>Children</h2>
   <ul>
