@@ -2,17 +2,17 @@
   <h1>Home</h1>
   <h2>Parent</h2>
   <label for="parent-select">Parent: </label>
-  <select v-model="selected">
-    <option v-for="parent in parents" v-bind:value="selected" v-bind:key="parent.id" id="parent-select">
-      {{ parent.name }}
+  <select v-model="selectedParentId">
+    <option v-for="parent in parents" v-bind:value="parent.id" v-bind:key="parent.id" id="parent-select">
+      {{ parent.id }} {{ parent.name }}
     </option>
   </select>
-  <p>Selected: {{ selected }}</p>
+  <p>selectedParentId: {{ selectedParentId }}</p>
 
   <h2>Children</h2>
   <ul>
     <li v-for="child in children" v-bind:key="child.id">
-      {{ child.name }} {{ child.id }}
+      {{ child.id }} {{ child.name }} 
     </li>
   </ul>
 </template>
@@ -21,7 +21,7 @@
 export default {
   data(){   
     return {
-      selected: 2
+      selectedParentId: 333
     } 
   },
   computed: {
@@ -29,7 +29,9 @@ export default {
       return this.$store.getters.parentSet;
     },
     children(){
-      return this.$store.getters.childrenSet(2);
+      //const selectParentId = 111;
+      const allChildren = this.$store.getters.childrenSet;
+      return allChildren.filter(child => child.parent === this.$data.selectedParentId);
     },
     selectedParent(){
       return this.$store.state.selectedParent;
