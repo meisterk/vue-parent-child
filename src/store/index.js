@@ -18,12 +18,8 @@ export default createStore({
     childrenById: [11, 22, 33, 44]
   },
   getters: {
-    // all parents: [{ name: "Parent A", children: [11,22]}, { name: "Parent B", children: [33,44]} , ...]
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
-
-    // all children: []
-    childrenSet: state => state.childrenById.map( id => state.children[id] ) 
-            //.filter(child => child.parent === parentId)      
+    childrenSet: state => state.childrenById.map( id => state.children[id] )                 
   },
   mutations: {    
   },

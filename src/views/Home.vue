@@ -29,9 +29,10 @@ export default {
       return this.$store.getters.parentSet;
     },
     children(){
-      //const selectParentId = 111;
-      const allChildren = this.$store.getters.childrenSet;
-      return allChildren.filter(child => child.parent === this.$data.selectedParentId);
+      return this.$store.getters.childrenSet
+        .filter(child => 
+          child.parent === this.$data.selectedParentId
+        );
     },
     selectedParent(){
       return this.$store.state.selectedParent;
