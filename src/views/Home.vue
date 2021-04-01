@@ -21,10 +21,10 @@
 export default {
   data(){   
     return {
-      selectedParentId: 333
-    } 
+      selectedParentId: 111
+    }
   },
-  computed: {
+  computed: {    
     parents(){
       return this.$store.getters.parentSet;
     },
@@ -33,9 +33,16 @@ export default {
         .filter(child => 
           child.parent === this.$data.selectedParentId
         );
-    },
-    selectedParent(){
-      return this.$store.state.selectedParent;
+    }    
+  },
+  mounted(){
+    // store -> local data
+    this.$data.selectedParentId = this.$store.state.selectedParentId;
+  },
+  watch: {
+    // local data -> store
+    selectedParentId: function(){
+      this.$store.commit('setSelectedParentId', this.$data.selectedParentId);
     }
   }
 }

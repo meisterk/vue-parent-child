@@ -21,7 +21,10 @@ export default createStore({
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
     childrenSet: state => state.childrenById.map( id => state.children[id] )                 
   },
-  mutations: {    
+  mutations: { 
+    setSelectedParentId(state, id){
+      state.selectedParentId = id;
+    }   
   },
   actions: {
   },
