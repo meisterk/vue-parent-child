@@ -17,13 +17,21 @@
     </li>
   </ul>
   <button @click="newChild">Create new child</button>
+
+  <DeleteModal v-if="isModalVisible" @close="closeModal" @deleteChild="deleteFromModal" />
 </template>
 
 <script>
+import DeleteModal from "../components/DeleteModal.vue";
 export default {
+  components:{
+    DeleteModal,
+  },
   data(){   
     return {
-      selectedParentId: null
+      isModalVisible: false,
+      selectedParentId: null,
+      selectedChildId: null
     }
   },
   computed: {    
@@ -45,7 +53,18 @@ export default {
       this.$router.push('/create-child');
     },
     deleteChild(id){      
-      this.$store.commit('deleteChild', id);
+      this.selectedChildId = id;
+      this.showModal();
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+    deleteFromModal(){      
+      this.$store.commit('deleteChild', this.selectedChildId);
+      this.closeModal();
     }
   },
   mounted(){
