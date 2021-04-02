@@ -1,11 +1,11 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
     parents: {
       111: { id: 111, name: "Parent A", children: [11,22]},
       222: { id: 222, name: "Parent B", children: [33,44]},
-      333: { id: 333, name: "Parent C"}
+      333: { id: 333, name: "Parent C", children:[]}
     },
     parentsById: [111, 222, 333],
     selectedParentId: 222,
@@ -19,10 +19,23 @@ export default createStore({
   },
   getters: {
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
-    childrenSet: state => state.childrenById.map( id => state.children[id] )                 
+    childrenSet: state => state.childrenById.map( id => state.children[id] ),
+    newId(){
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }                 
   },
   mutations: { 
     setSelectedParentId(state, id){
+      state.selectedParentId = id;
+    },
+    addParent(state, newParent){
+      const id = newParent.id;
+      // add new propoerty to object      
+      state.parents = { ...state.parents, [id]: newParent };      
+      state.parentsById.push(id);
       state.selectedParentId = id;
     }   
   },
