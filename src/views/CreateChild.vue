@@ -19,9 +19,11 @@ export default {
       this.$router.push('/');
     },
     buttonSave(){
+      const newId = this.$store.getters.newId;      
       const newChild = {
-        id: this.$store.getters.nextId,
-        name: this.childName
+        id: newId,
+        name: this.childName,
+        parent: null        
       };
       this.$store.commit('addChild',newChild);
       this.$router.push('/');

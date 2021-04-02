@@ -37,6 +37,13 @@ export default createStore({
       state.parents = { ...state.parents, [id]: newParent };      
       state.parentsById.push(id);
       state.selectedParentId = id;
+    },   
+    addChild(state, newChild){
+      const id = newChild.id;
+      newChild.parent = state.selectedParentId;
+      // add new property to object      
+      state.children = { ...state.children, [id]: newChild };      
+      state.childrenById.push(id);      
     }   
   },
   actions: {
