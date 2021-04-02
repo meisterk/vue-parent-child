@@ -8,6 +8,7 @@
     </option>
   </select>
   <p>selectedParentId: {{ selectedParentId }}</p>
+  <button @click="newParent">Create new parent</button>
 
   <h2>Children</h2>
   <ul>
@@ -15,6 +16,7 @@
       {{ child.id }} {{ child.name }} 
     </li>
   </ul>
+  <button @click="newChild">Create new child</button>
 </template>
 
 <script>
@@ -34,6 +36,14 @@ export default {
           child.parent === this.$data.selectedParentId
         );
     }    
+  },
+  methods:{
+    newParent(){
+      this.$router.push('/create-parent');
+    },
+    newChild(){
+      this.$router.push('/create-child');
+    }
   },
   mounted(){
     // store -> local data
