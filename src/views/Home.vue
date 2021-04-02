@@ -4,16 +4,15 @@
   <label for="parent-select">Parent: </label>
   <select v-model="selectedParentId">
     <option v-for="parent in parents" v-bind:value="parent.id" v-bind:key="parent.id" id="parent-select">
-      {{ parent.id }} {{ parent.name }}
+      {{ parent.name }}
     </option>
   </select>
-  <p>selectedParentId: {{ selectedParentId }}</p>
   <button @click="newParent">Create new parent</button>
 
   <h2>Children</h2>
   <ul>
     <li v-for="child in children" v-bind:key="child.id">
-      {{ child.id }} {{ child.name }} 
+      {{ child.name }} 
     </li>
   </ul>
   <button @click="newChild">Create new child</button>
@@ -23,7 +22,7 @@
 export default {
   data(){   
     return {
-      selectedParentId: 111
+      selectedParentId: null
     }
   },
   computed: {    

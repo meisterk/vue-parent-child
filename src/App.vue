@@ -1,5 +1,6 @@
 <template>
   <HeaderComponent/>
+  
   <!--
   <div id="nav">
     <ul>
@@ -9,7 +10,7 @@
     </ul>
   </div>
   -->
-  
+
   <router-view/>
 
   <FooterComponent/>
