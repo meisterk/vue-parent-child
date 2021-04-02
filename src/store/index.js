@@ -3,12 +3,13 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     parents: {
-      111: { id: 111, name: "Parent A", children: [11,22]},
-      222: { id: 222, name: "Parent B", children: [33,44]},
-      333: { id: 333, name: "Parent C", children:[]}
+      111: { id: 111, name: "Parent A"},
+      222: { id: 222, name: "Parent B"},
+      333: { id: 333, name: "Parent C"},
     },
     parentsById: [111, 222, 333],
     selectedParentId: 222,
+
     children: {
       11: { id: 11, name: "Anna", parent: 111},
       22: { id: 22, name: "Berta", parent: 111},
@@ -33,7 +34,7 @@ export default createStore({
     },
     addParent(state, newParent){
       const id = newParent.id;
-      // add new propoerty to object      
+      // add new property to object      
       state.parents = { ...state.parents, [id]: newParent };      
       state.parentsById.push(id);
       state.selectedParentId = id;
@@ -41,9 +42,14 @@ export default createStore({
     addChild(state, newChild){
       const id = newChild.id;
       newChild.parent = state.selectedParentId;
-      // add new property to object      
-      state.children = { ...state.children, [id]: newChild };      
+      state.children = { ...state.children, [id]: newChild };
       state.childrenById.push(id);      
+    },   
+    deleteChild(state, id){            
+      delete state.children.[id]; 
+      state.childrenById = state.childrenById.filter(function(value){ 
+        return value !== id;
+      });     
     }   
   },
   actions: {

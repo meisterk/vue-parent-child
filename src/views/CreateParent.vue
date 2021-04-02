@@ -22,8 +22,7 @@ export default {
       const newId = this.$store.getters.newId;
       const newParent = {
         id: newId,
-        name: this.parentName,
-        children: []
+        name: this.parentName        
       };
       this.$store.commit('addParent',newParent);
       this.$router.push('/');

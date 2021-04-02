@@ -12,7 +12,8 @@
   <h2>Children</h2>
   <ul>
     <li v-for="child in children" v-bind:key="child.id">
-      {{ child.name }} 
+      {{ child.name }}
+      <button @click="deleteChild(child.id)">Delete</button>
     </li>
   </ul>
   <button @click="newChild">Create new child</button>
@@ -42,6 +43,9 @@ export default {
     },
     newChild(){
       this.$router.push('/create-child');
+    },
+    deleteChild(id){      
+      this.$store.commit('deleteChild', id);
     }
   },
   mounted(){
