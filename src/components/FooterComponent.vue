@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="mt-2">
     <p>Parent-Child by Franz Kohnle 2021</p>
   </footer>         
 </template>

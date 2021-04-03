@@ -1,23 +1,26 @@
 <template>
   <h1>Home</h1>
-  <h2>Parent</h2>
-  <label for="parent-select">Parent: </label>
-  <select v-model="selectedParentId">
-    <option v-for="parent in parents" v-bind:value="parent.id" v-bind:key="parent.id" id="parent-select">
-      {{ parent.name }}
-    </option>
-  </select>
-  <button @click="newParent">Create new parent</button>
+  <div class="border p-2">
+    <h2>Parent</h2>
+    <label for="parent-select" class="form-label">Parent: </label>
+    <select v-model="selectedParentId" class="form-select">
+      <option v-for="parent in parents" v-bind:value="parent.id" v-bind:key="parent.id" id="parent-select">
+        {{ parent.name }}
+      </option>
+    </select>
+    <button @click="newParent" class="btn btn-primary mt-2">Create new parent</button>
+  </div>
 
-  <h2>Children</h2>
-  <ul>
-    <li v-for="child in children" v-bind:key="child.id">
-      {{ child.name }}
-      <button @click="deleteChild(child.id)">Delete</button>
-    </li>
-  </ul>
-  <button @click="newChild">Create new child</button>
-
+  <div class="border mt-2 p-2">
+    <h2>Children</h2>
+    <ul class="list-group">
+      <li v-for="child in children" v-bind:key="child.id" class="list-group-item  d-flex justify-content-between align-items-center">
+        {{ child.name }}
+        <button @click="deleteChild(child.id)" class="btn btn-danger">Delete</button>
+      </li>
+    </ul>
+    <button @click="newChild" class="btn btn-primary  mt-2">Create new child</button>
+  </div>
   <DeleteModal v-if="isModalVisible" @close="closeModal" @deleteChild="deleteFromModal" />
 </template>
 

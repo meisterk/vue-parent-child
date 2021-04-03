@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-backdrop">
+<div class="modal-backdrop">
     <div class="modal">
       <h2>Delete Child</h2>
       <p>Really?</p>
