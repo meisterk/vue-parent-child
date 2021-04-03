@@ -1,11 +1,11 @@
 <template>
-<div class="modal-backdrop">
-    <div class="modal">
+<div class="modal-container">
+    <div class="modal-content">
       <h2>Delete Child</h2>
       <p>Really?</p>
       <div>
-        <button @click="cancel">Cancel</button>
-        <button @click="deleteChild">Delete</button>
+        <button @click="cancel" class="btn btn-danger me-2">Cancel</button>
+        <button @click="deleteChild" class="btn btn-primary">Delete</button>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
 </script>
 
 <style>
-  .modal-backdrop {
+  .modal-container {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -37,8 +37,9 @@
     justify-content: center;
     align-items: center;
   }
-  .modal {
-    background: #FFFFFF;
+  .modal-content {
+    background-color: #FFFFFF;
+    color: black;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
