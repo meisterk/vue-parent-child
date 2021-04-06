@@ -40,8 +40,35 @@ export default createStore({
     // e.g. c43c75a6-ef4e-4bac-9649-e6172347d00a 
   },
   mutations: {
-    initializeStore(){
-      console.log("init");
+    initializeStore(state){      
+      if(localStorage.getItem('vue-parent-child')){
+        let dataString = localStorage.getItem('vue-parent-child');
+        this.replaceState(
+					Object.assign(state, JSON.parse(dataString))
+				);
+      }else{
+        this.replaceState(
+					Object.assign(state, 
+            {
+              parents: {
+                111: { id: 111, name: "Parent A"},
+                222: { id: 222, name: "Parent B"},
+                333: { id: 333, name: "Parent C"},
+              },
+              parentsById: [111, 222, 333],
+              selectedParentId: 222,
+          
+              children: {
+                11: { id: 11, name: "Anna", parent: 111},
+                22: { id: 22, name: "Alf", parent: 111},
+                33: { id: 33, name: "Berta", parent: 222},
+                44: { id: 44, name: "Ben", parent: 222}
+              },
+              childrenById: [11, 22, 33, 44]
+            }
+          )
+				);
+      }
     },
     updateSelectedParentId(state, id){
       state.selectedParentId = id;
@@ -90,26 +117,32 @@ export default createStore({
     }   
   },
   actions: {
-    updateSelectedParentId({commit}, id){
+    updateSelectedParentId({commit, dispatch}, id){
       commit('updateSelectedParentId', id);
+      dispatch('saveToLocalStorage');
     },
-    addParent(commit, newParent){
+    addParent({commit, dispatch}, newParent){
       commit('addParent', newParent);
+      dispatch('saveToLocalStorage');
     },
-    deleteSelectedParent({commit, state}){
+    deleteSelectedParent({commit, dispatch, state}){
       const parentId = state.selectedParentId;
       commit('deleteParent', parentId);
+      dispatch('saveToLocalStorage');
     },
-    addChild({commit, getters}, newChild){
+    addChild({commit, dispatch, getters}, newChild){
       const newId = getters.newId;
       newChild.id = newId;      
       commit('addChild', newChild);
+      dispatch('saveToLocalStorage');
     },
-    deleteChild({commit}, id){
+    deleteChild({commit, dispatch}, id){
       commit('deleteChild', id);
+      dispatch('saveToLocalStorage');
     },
-    saveToLocalStorage(){
-      console.log('Save');
+    saveToLocalStorage({state}){
+      const dataString = JSON.stringify(state);
+      localStorage.setItem('vue-parent-child', dataString);
     }
   },
   modules: {
