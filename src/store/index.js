@@ -20,6 +20,7 @@ export default createStore({
   },
   getters: {
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
+    parentExists: state => state.parentsById.length > 0,
     childrenSet: state => state.childrenById.map( id => state.children[id] ),
     newId(){
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -40,19 +41,18 @@ export default createStore({
       state.selectedParentId = id;
     },   
     deleteParent(state, id){
-      // delete all children
+      // 1. delete all children
       // TODO
 
-      // delete parent
+      // 2. delete parent
       delete state.parents.[id]; 
       state.parentsById = state.parentsById.filter(function(value){ 
         return value !== id;
       });
 
-      // select other parent
-      if(state.parentsById.length>0){
+      // 3. select other parent
+      if(state.parentsById.length > 0){
         const nextId = state.parentsById[0];
-        console.log(nextId);
         state.selectedParentId = nextId;
       }else{
         state.selectedParentId = null;
