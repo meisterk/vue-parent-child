@@ -26,10 +26,10 @@ export default createStore({
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
       });
-    }                 
+    }
   },
   mutations: { 
-    setSelectedParentId(state, id){
+    updateSelectedParentId(state, id){
       state.selectedParentId = id;
     },
     addParent(state, newParent){
@@ -39,12 +39,24 @@ export default createStore({
       state.parentsById.push(id);
       state.selectedParentId = id;
     },   
-    deleteParent(state, id){            
+    deleteParent(state, id){
+      // delete all children
+      // TODO
+
+      // delete parent
       delete state.parents.[id]; 
       state.parentsById = state.parentsById.filter(function(value){ 
         return value !== id;
       });
-      state.selectedParentId = null;  
+
+      // select other parent
+      if(state.parentsById.length>0){
+        const nextId = state.parentsById[0];
+        console.log(nextId);
+        state.selectedParentId = nextId;
+      }else{
+        state.selectedParentId = null;
+      }      
     },   
     addChild(state, newChild){
       const id = newChild.id;

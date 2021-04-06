@@ -2,19 +2,18 @@
   <h1>Home</h1>
   <div class="border p-2">
     <h2>Parent</h2>
-    <label for="parent-select" class="form-label">Parent: </label>
-    <select v-model="selectedParentId" class="form-select">
+    <select v-if="parentExists" v-model="selectedParentId" class="form-select">
       <option v-for="parent in parents" v-bind:value="parent.id" v-bind:key="parent.id" id="parent-select">
         {{ parent.name }}
       </option>
     </select>
     <div>
-      <button @click="deleteParent" class="btn btn-danger mt-2 me-2">Delete selected parent</button>
+      <button v-if="parentExists" @click="deleteParent" class="btn btn-danger mt-2 me-2">Delete selected parent</button>
       <button @click="newParent" class="btn btn-primary mt-2">Create new parent</button>
     </div>
   </div>
 
-  <div class="border mt-2 p-2">
+  <div v-if="parentExists" class="border mt-2 p-2">
     <h2>Children</h2>
     <ul class="list-group">
       <li v-for="child in children" v-bind:key="child.id" class="list-group-item  d-flex justify-content-between align-items-center">
@@ -43,8 +42,7 @@ export default {
   data(){   
     return {
       isDeleteParentModalVisible: false,
-      isDeleteChildModalVisible: false,
-      selectedParentId: null,
+      isDeleteChildModalVisible: false,      
       selectedChildId: null
     }
   },
@@ -52,10 +50,21 @@ export default {
     parents(){
       return this.$store.getters.parentSet;
     },
+    parentExists(){
+      return this.$store.state.parentsById.length > 0;
+    },
+    selectedParentId: {
+      get(){
+        return this.$store.state.selectedParentId;
+      },
+      set(id){
+        this.$store.commit('updateSelectedParentId',id);
+      }
+    },
     children(){
       return this.$store.getters.childrenSet
         .filter(child => 
-          child.parent === this.$data.selectedParentId
+          child.parent === this.$store.state.selectedParentId
         );
     },
     nameOfselectedChild(){
@@ -68,7 +77,7 @@ export default {
     nameOfselectedParent(){
       const selectedParent = this.$store.getters.parentSet
         .filter(parent => 
-          parent.id === this.$data.selectedParentId
+          parent.id === this.$store.state.selectedParentId
         )[0];
       return selectedParent.name;
     }    
@@ -85,7 +94,6 @@ export default {
       this.showDeleteChildModal();
     },
     deleteParent(){      
-      console.log(this.selectedParentId);
       this.showDeleteParentModal();
     },
     showDeleteChildModal() {
@@ -99,22 +107,12 @@ export default {
       this.isDeleteChildModalVisible = false;
     },
     deleteFromModalParent(){      
-      this.$store.commit('deleteParent', this.selectedParentId);
+      this.$store.commit('deleteParent', this.$store.state.selectedParentId);
       this.closeModal();
     },
     deleteFromModalChild(){      
       this.$store.commit('deleteChild', this.selectedChildId);
       this.closeModal();
-    }
-  },
-  mounted(){
-    // store -> local data
-    this.$data.selectedParentId = this.$store.state.selectedParentId;
-  },
-  watch: {
-    // local data -> store
-    selectedParentId: function(){
-      this.$store.commit('setSelectedParentId', this.$data.selectedParentId);
     }
   }
 }

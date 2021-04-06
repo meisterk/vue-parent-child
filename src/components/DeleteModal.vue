@@ -1,5 +1,5 @@
 <template>
-<div class="modal-container">
+  <div class="modal-container">
     <div class="modal-content">
       <h2>Delete {{ typeOfElement }}</h2>
       <p>Do you really want to delete {{ nameOfElement }}?</p>
