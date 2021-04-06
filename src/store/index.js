@@ -24,7 +24,7 @@ export default createStore({
 
     parentExists: state => state.parentsById.length > 0,
 
-    childrenFromSelectedParent: state =>
+    childrenOfSelectedParent: state =>
       state.childrenById
         .map( id => state.children[id] )
         .filter( child => 
