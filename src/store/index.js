@@ -51,9 +51,16 @@ export default createStore({
       state.selectedParentId = id;
     },   
     deleteParent(state, id){
-      // 1. delete all children
-      // TODO      
-      // [33,44].forEach(childId =>);
+      // 1. delete all children of selected parent
+      // TODO
+      Object.values(state.children).forEach(child => {
+        if(child.parent === id){
+          delete state.childrenById.[child.id];
+          state.children.[child.id];
+        }
+      });
+      // Object.values(state.children).filter(child => child.parent!== id});
+      // [33,44].forEach(childId => { delete state.children[childId]});
 
       // 2. delete parent
       delete state.parents.[id]; 
