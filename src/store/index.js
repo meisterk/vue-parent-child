@@ -20,14 +20,20 @@ export default createStore({
   },
   getters: {
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
+    // [{id: 111, name: "Parent A"}, ...]
+
     parentExists: state => state.parentsById.length > 0,
+
     childrenSet: state => state.childrenById.map( id => state.children[id] ),
+    // [{"id": 33, "name": "Berta", "parent": 222}, ... ]
+
     newId(){
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
       });
     }
+    // e.g. c43c75a6-ef4e-4bac-9649-e6172347d00a 
   },
   mutations: { 
     updateSelectedParentId(state, id){
@@ -42,7 +48,8 @@ export default createStore({
     },   
     deleteParent(state, id){
       // 1. delete all children
-      // TODO
+      // TODO      
+      // [33,44].forEach(childId =>);
 
       // 2. delete parent
       delete state.parents.[id]; 
