@@ -24,8 +24,12 @@ export default createStore({
 
     parentExists: state => state.parentsById.length > 0,
 
-    childrenSet: state => state.childrenById.map( id => state.children[id] ),
-    // [{"id": 33, "name": "Berta", "parent": 222}, ... ]
+    childrenFromSelectedParent: state =>
+      state.childrenById
+        .map( id => state.children[id] )
+        .filter( child => 
+          child.parent === state.selectedParentId),
+    // [{"id": 33, "name": "Berta", "parent": 222}, ... ]     
 
     newId(){
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

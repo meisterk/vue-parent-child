@@ -62,13 +62,10 @@ export default {
       }
     },
     children(){
-      return this.$store.getters.childrenSet
-        .filter(child => 
-          child.parent === this.$store.state.selectedParentId
-        );
+      return this.$store.getters.childrenFromSelectedParent;      
     },
     nameOfSelectedChild(){
-      const selectedChild = this.$store.getters.childrenSet
+      const selectedChild = this.$store.getters.childrenFromSelectedParent
         .filter(child => 
           child.id === this.$data.selectedChildId
         )[0];
