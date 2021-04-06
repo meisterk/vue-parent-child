@@ -26,7 +26,7 @@ export default {
         id: newId,
         name: this.parentName        
       };
-      this.$store.commit('addParent',newParent);
+      this.$store.dispatch('addParent', newParent);
       this.$router.push('/');
     }
   }

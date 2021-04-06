@@ -20,14 +20,13 @@ export default {
     buttonCancel(){      
       this.$router.push('/');
     },
-    buttonSave(){
-      const newId = this.$store.getters.newId;      
+    buttonSave(){            
       const newChild = {
-        id: newId,
+        id: null, // new id is calculated in store
         name: this.childName,
         parent: null        
       };
-      this.$store.commit('addChild',newChild);
+      this.$store.dispatch('addChild',newChild);
       this.$router.push('/');
     }
   }

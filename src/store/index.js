@@ -39,7 +39,10 @@ export default createStore({
     }
     // e.g. c43c75a6-ef4e-4bac-9649-e6172347d00a 
   },
-  mutations: { 
+  mutations: {
+    initializeStore(){
+      console.log("init");
+    },
     updateSelectedParentId(state, id){
       state.selectedParentId = id;
     },
@@ -87,6 +90,27 @@ export default createStore({
     }   
   },
   actions: {
+    updateSelectedParentId({commit}, id){
+      commit('updateSelectedParentId', id);
+    },
+    addParent(commit, newParent){
+      commit('addParent', newParent);
+    },
+    deleteSelectedParent({commit, state}){
+      const parentId = state.selectedParentId;
+      commit('deleteParent', parentId);
+    },
+    addChild({commit, getters}, newChild){
+      const newId = getters.newId;
+      newChild.id = newId;      
+      commit('addChild', newChild);
+    },
+    deleteChild({commit}, id){
+      commit('deleteChild', id);
+    },
+    saveToLocalStorage(){
+      console.log('Save');
+    }
   },
   modules: {
   }

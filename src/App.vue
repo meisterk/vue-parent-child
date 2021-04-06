@@ -25,5 +25,8 @@ export default {
     HeaderComponent: HeaderComponent,
     FooterComponent: FooterComponent
   },
+  beforeCreate() {
+    this.$store.commit('initializeStore');
+  }
 };
 </script>

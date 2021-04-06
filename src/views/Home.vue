@@ -58,7 +58,7 @@ export default {
         return this.$store.state.selectedParentId;
       },
       set(id){
-        this.$store.commit('updateSelectedParentId',id);
+        this.$store.dispatch('updateSelectedParentId',id);
       }
     },
     children(){
@@ -106,11 +106,11 @@ export default {
       this.isDeleteChildModalVisible = false;      
     },
     deleteFromModalParent(){      
-      this.$store.commit('deleteParent', this.$store.state.selectedParentId);
+      this.$store.dispatch('deleteSelectedParent');
       this.closeModalParent();
     },
     deleteFromModalChild(){      
-      this.$store.commit('deleteChild', this.selectedChildId);
+      this.$store.dispatch('deleteChild', this.selectedChildId);
       this.closeModalChild();
     }
   }
