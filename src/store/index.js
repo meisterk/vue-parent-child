@@ -12,9 +12,9 @@ export default createStore({
 
     children: {
       11: { id: 11, name: "Anna", parent: 111},
-      22: { id: 22, name: "Berta", parent: 111},
-      33: { id: 33, name: "Carla", parent: 222},
-      44: { id: 44, name: "Dieter", parent: 222}
+      22: { id: 22, name: "Alf", parent: 111},
+      33: { id: 33, name: "Berta", parent: 222},
+      44: { id: 44, name: "Ben", parent: 222}
     },
     childrenById: [11, 22, 33, 44]
   },
