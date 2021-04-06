@@ -81,13 +81,16 @@ export default createStore({
       state.selectedParentId = id;
     },   
     deleteParent(state, id){
-      // 1. delete all children of selected parent      
+      // 1. delete all children of selected parent 
       Object.values(state.children).forEach(child => {
         if(child.parent === id){
-          delete state.childrenById.[child.id];
-          state.children.[child.id];
+          const index = state.childrenById.indexOf(child.id);
+          if (index > -1) {
+            state.childrenById.splice(index, 1);
+          }          
+          delete state.children.[child.id];
         }
-      });      
+      });           
 
       // 2. delete parent
       delete state.parents.[id]; 
