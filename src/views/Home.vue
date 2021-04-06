@@ -25,11 +25,11 @@
   </div>
 
   <DeleteModal v-if="isDeleteParentModalVisible"
-    @close="closeModal" @deleteOk="deleteFromModalParent"
+    @close="closeModalParent" @deleteOk="deleteFromModalParent"
     typeOfElement="Parent" :nameOfElement="nameOfSelectedParent" />
 
   <DeleteModal v-if="isDeleteChildModalVisible"
-    @close="closeModal" @deleteOk="deleteFromModalChild"
+    @close="closeModalChild" @deleteOk="deleteFromModalChild"
     typeOfElement="Child" :nameOfElement="nameOfSelectedChild" />
 </template>
 
@@ -99,17 +99,19 @@ export default {
     showDeleteParentModal() {
       this.isDeleteParentModalVisible = true;
     },
-    closeModal() {
-      this.isDeleteParentModalVisible = false;
-      this.isDeleteChildModalVisible = false;
+    closeModalParent() {
+      this.isDeleteParentModalVisible = false;      
+    },
+    closeModalChild() {
+      this.isDeleteChildModalVisible = false;      
     },
     deleteFromModalParent(){      
       this.$store.commit('deleteParent', this.$store.state.selectedParentId);
-      this.closeModal();
+      this.closeModalParent();
     },
     deleteFromModalChild(){      
       this.$store.commit('deleteChild', this.selectedChildId);
-      this.closeModal();
+      this.closeModalChild();
     }
   }
 }
