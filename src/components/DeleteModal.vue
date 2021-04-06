@@ -1,11 +1,11 @@
 <template>
 <div class="modal-container">
     <div class="modal-content">
-      <h2>Delete Child</h2>
-      <p>Really?</p>
+      <h2>Delete {{ typeOfElement }}</h2>
+      <p>Do you really want to delete {{ nameOfElement }}?</p>
       <div>
         <button @click="cancel" class="btn btn-danger me-2">Cancel</button>
-        <button @click="deleteChild" class="btn btn-primary">Delete</button>
+        <button @click="deleteOk" class="btn btn-primary">Delete</button>
       </div>
     </div>
   </div>
@@ -14,12 +14,16 @@
 <script>
   export default {
     name: 'DeleteModal',
+    props: { 
+      typeOfElement: String,
+      nameOfElement: String 
+      },
     methods: {
       cancel() {
         this.$emit('close');
       },
-      deleteChild(){
-        this.$emit('deleteChild');
+      deleteOk(){
+        this.$emit('deleteOk');
       }
     },
   };

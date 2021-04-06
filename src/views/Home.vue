@@ -21,7 +21,9 @@
     </ul>
     <button @click="newChild" class="btn btn-primary  mt-2">Create new child</button>
   </div>
-  <DeleteModal v-if="isModalVisible" @close="closeModal" @deleteChild="deleteFromModal" />
+  <DeleteModal v-if="isDeleteChildModalVisible"
+    @close="closeModal" @deleteOk="deleteFromModalChild"
+    typeOfElement="Child" :nameOfElement="nameOfselectedChild" />
 </template>
 
 <script>
@@ -32,7 +34,7 @@ export default {
   },
   data(){   
     return {
-      isModalVisible: false,
+      isDeleteChildModalVisible: false,
       selectedParentId: null,
       selectedChildId: null
     }
@@ -46,6 +48,13 @@ export default {
         .filter(child => 
           child.parent === this.$data.selectedParentId
         );
+    },
+    nameOfselectedChild(){
+      const selectedChild = this.$store.getters.childrenSet
+        .filter(child => 
+          child.id === this.$data.selectedChildId
+        )[0];
+      return selectedChild.name;
     }    
   },
   methods:{
@@ -60,12 +69,12 @@ export default {
       this.showModal();
     },
     showModal() {
-      this.isModalVisible = true;
+      this.isDeleteChildModalVisible = true;
     },
     closeModal() {
-      this.isModalVisible = false;
+      this.isDeleteChildModalVisible = false;
     },
-    deleteFromModal(){      
+    deleteFromModalChild(){      
       this.$store.commit('deleteChild', this.selectedChildId);
       this.closeModal();
     }
