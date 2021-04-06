@@ -39,6 +39,13 @@ export default createStore({
       state.parentsById.push(id);
       state.selectedParentId = id;
     },   
+    deleteParent(state, id){            
+      delete state.parents.[id]; 
+      state.parentsById = state.parentsById.filter(function(value){ 
+        return value !== id;
+      });
+      state.selectedParentId = null;  
+    },   
     addChild(state, newChild){
       const id = newChild.id;
       newChild.parent = state.selectedParentId;

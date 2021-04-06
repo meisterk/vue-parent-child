@@ -8,7 +8,10 @@
         {{ parent.name }}
       </option>
     </select>
-    <button @click="newParent" class="btn btn-primary mt-2">Create new parent</button>
+    <div>
+      <button @click="deleteParent" class="btn btn-danger mt-2 me-2">Delete selected parent</button>
+      <button @click="newParent" class="btn btn-primary mt-2">Create new parent</button>
+    </div>
   </div>
 
   <div class="border mt-2 p-2">
@@ -21,6 +24,11 @@
     </ul>
     <button @click="newChild" class="btn btn-primary  mt-2">Create new child</button>
   </div>
+
+  <DeleteModal v-if="isDeleteParentModalVisible"
+    @close="closeModal" @deleteOk="deleteFromModalParent"
+    typeOfElement="Parent" :nameOfElement="nameOfselectedParent" />
+
   <DeleteModal v-if="isDeleteChildModalVisible"
     @close="closeModal" @deleteOk="deleteFromModalChild"
     typeOfElement="Child" :nameOfElement="nameOfselectedChild" />
@@ -34,6 +42,7 @@ export default {
   },
   data(){   
     return {
+      isDeleteParentModalVisible: false,
       isDeleteChildModalVisible: false,
       selectedParentId: null,
       selectedChildId: null
@@ -55,6 +64,13 @@ export default {
           child.id === this.$data.selectedChildId
         )[0];
       return selectedChild.name;
+    },    
+    nameOfselectedParent(){
+      const selectedParent = this.$store.getters.parentSet
+        .filter(parent => 
+          parent.id === this.$data.selectedParentId
+        )[0];
+      return selectedParent.name;
     }    
   },
   methods:{
@@ -66,13 +82,25 @@ export default {
     },
     deleteChild(id){      
       this.selectedChildId = id;
-      this.showModal();
+      this.showDeleteChildModal();
     },
-    showModal() {
+    deleteParent(){      
+      console.log(this.selectedParentId);
+      this.showDeleteParentModal();
+    },
+    showDeleteChildModal() {
       this.isDeleteChildModalVisible = true;
     },
+    showDeleteParentModal() {
+      this.isDeleteParentModalVisible = true;
+    },
     closeModal() {
+      this.isDeleteParentModalVisible = false;
       this.isDeleteChildModalVisible = false;
+    },
+    deleteFromModalParent(){      
+      this.$store.commit('deleteParent', this.selectedParentId);
+      this.closeModal();
     },
     deleteFromModalChild(){      
       this.$store.commit('deleteChild', this.selectedChildId);
