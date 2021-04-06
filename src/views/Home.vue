@@ -26,11 +26,11 @@
 
   <DeleteModal v-if="isDeleteParentModalVisible"
     @close="closeModal" @deleteOk="deleteFromModalParent"
-    typeOfElement="Parent" :nameOfElement="nameOfselectedParent" />
+    typeOfElement="Parent" :nameOfElement="nameOfSelectedParent" />
 
   <DeleteModal v-if="isDeleteChildModalVisible"
     @close="closeModal" @deleteOk="deleteFromModalChild"
-    typeOfElement="Child" :nameOfElement="nameOfselectedChild" />
+    typeOfElement="Child" :nameOfElement="nameOfSelectedChild" />
 </template>
 
 <script>
@@ -51,7 +51,7 @@ export default {
       return this.$store.getters.parentSet;
     },
     parentExists(){
-      return this.$store.state.parentsById.length > 0;
+      return this.$store.getters.parentExists;
     },
     selectedParentId: {
       get(){
@@ -67,14 +67,14 @@ export default {
           child.parent === this.$store.state.selectedParentId
         );
     },
-    nameOfselectedChild(){
+    nameOfSelectedChild(){
       const selectedChild = this.$store.getters.childrenSet
         .filter(child => 
           child.id === this.$data.selectedChildId
         )[0];
       return selectedChild.name;
     },    
-    nameOfselectedParent(){
+    nameOfSelectedParent(){
       const selectedParent = this.$store.getters.parentSet
         .filter(parent => 
           parent.id === this.$store.state.selectedParentId
