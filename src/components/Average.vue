@@ -1,5 +1,5 @@
 <template>  
-    <p>Durchschnittliche Anzahl der Kinder: {{ averageNumberOfChilderen }}</p>          
+    <p>Durchschnittliche Anzahl der Kinder: {{ averageNumberOfChildren }}</p>          
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
       }
   },
   computed :{
-      averageNumberOfChilderen(){
+      averageNumberOfChildren(){
         const allChildren = this.$store.state.children;
         const childrenById = this.$store.state.childrenById;
         const parentsById =  this.$store.state.parentsById;
