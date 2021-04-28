@@ -22,7 +22,15 @@ export default createStore({
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
     // [{id: 111, name: "Parent A"}, ...]
 
+    numberOfParents: state => {
+      return state.parentsById.length;
+    },
+
     parentExists: state => state.parentsById.length > 0,
+
+    numberOfChildren: state => {
+      return state.childrenById.length;
+    },
 
     childrenOfSelectedParent: state =>
       state.childrenById
