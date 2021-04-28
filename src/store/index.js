@@ -11,10 +11,10 @@ export default createStore({
     selectedParentId: 222,
 
     children: {
-      11: { id: 11, name: "Anna", parent: 111},
-      22: { id: 22, name: "Alf", parent: 111},
-      33: { id: 33, name: "Berta", parent: 222},
-      44: { id: 44, name: "Ben", parent: 222}
+      11: { id: 11, firstName: "Anna", lastName: "Arm", parent: 111},
+      22: { id: 22, firstName: "Alf", lastName: "Alla", parent: 111},
+      33: { id: 33, firstName: "Berta", lastName: "Bein", parent: 222},
+      44: { id: 44, firstName: "Ben", lastName: "Bauch", parent: 222}
     },
     childrenById: [11, 22, 33, 44]
   },
@@ -67,10 +67,10 @@ export default createStore({
               selectedParentId: 222,
           
               children: {
-                11: { id: 11, name: "Anna", parent: 111},
-                22: { id: 22, name: "Alf", parent: 111},
-                33: { id: 33, name: "Berta", parent: 222},
-                44: { id: 44, name: "Ben", parent: 222}
+                11: { id: 11, firstName: "Anna", lastName: "Arm", parent: 111},
+                22: { id: 22, firstName: "Alf", lastName: "Alla", parent: 111},
+                33: { id: 33, firstName: "Berta", lastName: "Bein", parent: 222},
+                44: { id: 44, firstName: "Ben", lastName: "Bauch", parent: 222}
               },
               childrenById: [11, 22, 33, 44]
             }

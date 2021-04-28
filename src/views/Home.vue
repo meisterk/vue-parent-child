@@ -17,7 +17,7 @@
     <h2>Children</h2>
     <ul class="list-group">
       <li v-for="child in children" v-bind:key="child.id" class="list-group-item  d-flex justify-content-between align-items-center">
-        {{ child.name }}
+        {{ child.firstName }} {{ child.lastName }}
         <button @click="deleteChild(child.id)" class="btn btn-danger">Delete</button>
       </li>
     </ul>
@@ -73,7 +73,7 @@ export default {
         .filter(child => 
           child.id === this.$data.selectedChildId
         )[0];
-      return selectedChild.name;
+      return selectedChild.firstName + " " + selectedChild.lastName;
     },    
     nameOfSelectedParent(){
       const selectedParent = this.$store.getters.parentSet

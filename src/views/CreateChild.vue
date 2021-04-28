@@ -1,7 +1,11 @@
 <template>
   <div class="p-2">  
-    <h1>CreateChild</h1>  
-    <input type="text" v-model="childName" class="form-control">
+    <h1>CreateChild</h1>
+    <label for="firstName">Firstname</label>  
+    <input id="firstName" type="text" v-model="firstName" class="form-control">
+    
+    <label for="lastName">Lastname</label>
+    <input id="lastName" type="text" v-model="lastName" class="form-control">
     <div class="pt-2">
       <button @click="buttonCancel" class="btn btn-danger me-2">Cancel</button>
       <button @click="buttonSave" class="btn btn-primary">Save</button>
@@ -13,7 +17,8 @@
 export default {
   data(){   
     return {
-        childName: ""
+        firstName: "",
+        lastName: ""
     } 
   },
   methods:{
@@ -23,7 +28,8 @@ export default {
     buttonSave(){            
       const newChild = {
         id: null, // new id is calculated in store
-        name: this.childName,
+        firstName: this.firstName,
+        lastName: this.lastName,
         parent: null        
       };
       this.$store.dispatch('addChild',newChild);
