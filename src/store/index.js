@@ -19,6 +19,7 @@ export default createStore({
     childrenById: [11, 22, 33, 44]
   },
   getters: {
+    /************ PARENTS *********************************************/
     parentSet: state => state.parentsById.map( id => state.parents[id] ),
     // [{id: 111, name: "Parent A"}, ...]
 
@@ -28,15 +29,30 @@ export default createStore({
 
     parentExists: state => state.parentsById.length > 0,
 
+    /************ CHILDREN *********************************************/
     numberOfChildren: state => {
       return state.childrenById.length;
     },
 
-    childrenOfSelectedParent: state =>
+    allChildren: state =>
+      state.childrenById
+        .map( id => state.children[id] ),
+
+    childrenOfParentById: (state, getters) => (parentId) => {
+      return getters.allChildren
+        .filter( child => 
+          child.parent === parentId)
+    },
+
+    childrenOfSelectedParent: (state, getters) => {
+      return getters.childrenOfParentById(state.selectedParentId)
+    },
+
+    /*childrenOfSelectedParent: state =>
       state.childrenById
         .map( id => state.children[id] )
         .filter( child => 
-          child.parent === state.selectedParentId),
+          child.parent === state.selectedParentId),*/
     // [{"id": 33, "name": "Berta", "parent": 222}, ... ]     
     
     newId(){

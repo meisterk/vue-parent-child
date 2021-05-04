@@ -9,7 +9,7 @@ export default {
   name: "Average",  
   computed :{
     numberOfParents(){        
-        return  this.$store.getters.numberOfParents;       
+        return  this.$store.getters.numberOfParents;  
     },
     numberOfChildren(){        
         return  this.$store.getters.numberOfChildren;       
