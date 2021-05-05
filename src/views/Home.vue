@@ -52,14 +52,14 @@ export default {
   },
   computed: {    
     parents(){
-      return this.$store.getters.parentSet;
+      return this.$store.getters.allParents;
     },
     parentExists(){
       return this.$store.getters.parentExists;
     },
     selectedParentId: {
       get(){
-        return this.$store.state.selectedParentId;
+        return this.$store.state.parents.selectedParentId;
       },
       set(id){
         this.$store.dispatch('updateSelectedParentId',id);
@@ -76,9 +76,9 @@ export default {
       return selectedChild.firstName + " " + selectedChild.lastName;
     },    
     nameOfSelectedParent(){
-      const selectedParent = this.$store.getters.parentSet
+      const selectedParent = this.$store.getters.allParents
         .filter(parent => 
-          parent.id === this.$store.state.selectedParentId
+          parent.id === this.$store.state.parents.selectedParentId
         )[0];
       return selectedParent.name;
     }    
