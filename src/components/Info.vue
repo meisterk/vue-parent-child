@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Average",  
+  name: "Info",  
   computed :{
     numberOfParents(){        
         return  this.$store.getters.numberOfParents;  

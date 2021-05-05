@@ -24,7 +24,7 @@
     <button @click="newChild" class="btn btn-primary  mt-2">Create new child</button>
   </div>
 
-  <Average/>
+  <Info/>
 
   <DeleteModal v-if="isDeleteParentModalVisible"
     @close="closeModalParent" @deleteOk="deleteFromModalParent"
@@ -37,11 +37,11 @@
 
 <script>
 import DeleteModal from "../components/DeleteModal.vue";
-import Average from "../components/Average.vue";
+import Info from "../components/Info.vue";
 export default {
   components:{
     DeleteModal,
-    Average
+    Info
   },
   data(){   
     return {
