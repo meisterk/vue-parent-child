@@ -1,7 +1,10 @@
-<template>  
+<template>
+  <div class="alert alert-warning">
+    <h2 class="alert-heading">Info</h2> 
     <p>Anzahl der Eltern: {{ numberOfParents }}</p>          
     <p>Anzahl der Kinder: {{ numberOfChildren }}</p>          
-    <p>Durchschnittliche Anzahl der Kinder: {{ averageNumberOfChildren }}</p>          
+    <p>Durchschnittliche Anzahl der Kinder: {{ averageNumberOfChildren }}</p>
+  </div>         
 </template>
 
 <script>
@@ -22,10 +25,5 @@ export default {
 </script>
 
 <style scoped>
-p {
-  background-color: yellow;
-  color: black;
-  padding: 0.2em 0.5em;
-  margin-top: 0.2em;
-}
+
 </style>
