@@ -1,15 +1,5 @@
 <template>
   <HeaderComponent/>
-  
-  <!--
-  <div id="nav">
-    <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/create-parent">Create new Parent</router-link></li>
-      <li><router-link to="/create-child">Create new Child</router-link></li>
-    </ul>
-  </div>
-  -->
 
   <router-view/>
 
