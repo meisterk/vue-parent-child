@@ -18,7 +18,7 @@ export default {
         return  this.$store.getters.numberOfChildren;       
     },
     averageNumberOfChildren(){
-        return (this.numberOfChildren / this.numberOfParents).toFixed(1);
+        return this.$store.getters.averageNumberOfChildren;
     }
   }
 };

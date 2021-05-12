@@ -38,6 +38,17 @@ export default createStore({
       return state.children.allIds.length;
     },
 
+    averageNumberOfChildren: state => {
+      const childrenCount = state.children.allIds.length;
+      const parentCount = state.parents.allIds.length;
+      if(parentCount === 0){
+        return '-';
+      }
+      else{
+        return (childrenCount / parentCount).toFixed(1);
+      }      
+    },
+
     allChildren: state =>
       state.children.allIds
         .map( id => state.children.byId[id] ),
