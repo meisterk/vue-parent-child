@@ -7,8 +7,8 @@
     <label for="lastName">Lastname</label>
     <input id="lastName" type="text" v-model="lastName" class="form-control">
     <div class="pt-2">
-      <button @click="buttonCancel" class="btn btn-danger me-2">Cancel</button>
-      <button @click="buttonSave" class="btn btn-primary">Save</button>
+      <button @click="buttonCancel" class="btn btn-outline-secondary me-2">Cancel</button>
+      <button @click="buttonSave" class="btn btn-success">Save</button>
     </div>
   </div>
 </template>

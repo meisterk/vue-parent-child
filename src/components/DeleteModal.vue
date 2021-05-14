@@ -4,8 +4,8 @@
       <h2>Delete {{ typeOfElement }}</h2>
       <p>Do you really want to delete {{ nameOfElement }}?</p>
       <div>
-        <button @click="cancel" class="btn btn-danger me-2">Cancel</button>
-        <button @click="deleteOk" class="btn btn-primary">Delete</button>
+        <button @click="cancel" class="btn btn-outline-secondary me-2">Cancel</button>
+        <button @click="deleteOk" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>
