@@ -1,27 +1,7 @@
 import { createStore } from 'vuex';
 
 export default createStore({
-  state: {
-    parents: {
-      byId: {
-        111: { id: 111, name: "Parent A"},
-        222: { id: 222, name: "Parent B"},
-        333: { id: 333, name: "Parent C"},
-      },
-      allIds: [111, 222, 333],
-      selectedParentId: 222
-    },
-
-    children: {
-      byId: {
-        11: { id: 11, firstName: "Anna", lastName: "Arm", parent: 111},
-        22: { id: 22, firstName: "Alf", lastName: "Alla", parent: 111},
-        33: { id: 33, firstName: "Berta", lastName: "Bein", parent: 222},
-        44: { id: 44, firstName: "Ben", lastName: "Bauch", parent: 222}
-      },
-      allIds: [11, 22, 33, 44]
-    }
-  },
+  state: {}, // Default data is set in initializeStore
   getters: {
     /************ PARENTS *********************************************/
     allParents: state => state.parents.allIds.map( id => state.parents.byId[id] ),
