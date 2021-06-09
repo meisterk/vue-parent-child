@@ -24,8 +24,8 @@ export default {
   },
   data(){   
     return {
-        firstName: "",
-        lastName: "",
+        firstName: "New Firstname",
+        lastName: "New LastName",
         size: 185
     } 
   },
