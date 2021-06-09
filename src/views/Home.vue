@@ -17,7 +17,7 @@
     <h2>Children</h2>
     <ul class="list-group">
       <li v-for="child in children" v-bind:key="child.id" class="list-group-item  d-flex justify-content-between align-items-center">
-        {{ child.firstName }} {{ child.lastName }}
+        {{ child.firstName }} {{ child.lastName }},  {{ child.size }} cm
         <button @click="deleteChild(child.id)" class="btn btn-danger">Delete</button>
       </li>
     </ul>
