@@ -108,13 +108,13 @@ export default createStore({
           const index = state.children.allIds.indexOf(child.id);          
           state.children.allIds.splice(index, 1);
           // b) children.allIds          
-          delete state.children.byId.[child.id];
+          delete state.children.byId[child.id];
         }
       });           
 
       // 2. delete parent
       // a) parents.ById
-      delete state.parents.byId.[id];
+      delete state.parents.byId[id];
       // b) parents.allIds
       state.parents.allIds = state.parents.allIds.filter(function(value){ 
         return value !== id;
