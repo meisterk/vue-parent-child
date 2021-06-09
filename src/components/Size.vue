@@ -20,7 +20,6 @@
     },
     watch: {
       size(newValue){
-          console.log(newValue);
           this.$emit('sizeChanged', newValue);
       }
     }
