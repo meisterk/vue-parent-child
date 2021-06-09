@@ -78,10 +78,10 @@ export default createStore({
           
               children: {
                 byId: {
-                  11: { id: 11, firstName: "Anna", lastName: "Arm", parent: 111},
-                  22: { id: 22, firstName: "Alf", lastName: "Alla", parent: 111},
-                  33: { id: 33, firstName: "Berta", lastName: "Bein", parent: 222},
-                  44: { id: 44, firstName: "Ben", lastName: "Bauch", parent: 222}
+                  11: { id: 11, firstName: "Anna", lastName: "Arm", size: 150, parent: 111},
+                  22: { id: 22, firstName: "Alf", lastName: "Alla", size: 170, parent: 111},
+                  33: { id: 33, firstName: "Berta", lastName: "Bein", size: 185, parent: 222},
+                  44: { id: 44, firstName: "Ben", lastName: "Bauch", size: 170, parent: 222}
                 },
                 allIds: [11, 22, 33, 44]
               }
