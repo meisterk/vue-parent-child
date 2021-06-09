@@ -24,6 +24,7 @@ export default {
   },
   data(){   
     return {
+        // default values for new child
         firstName: "New Firstname",
         lastName: "New LastName",
         size: 185
