@@ -26,6 +26,8 @@
 
   <Info/>
 
+  <router-link to="/joke">Joke of the day</router-link>
+
   <DeleteModal v-if="isDeleteParentModalVisible"
     @close="closeModalParent" @deleteOk="deleteFromModalParent"
     typeOfElement="Parent" :nameOfElement="nameOfSelectedParent" />
